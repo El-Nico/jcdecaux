@@ -1,9 +1,18 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>recycler-list-page</ion-title>
-  </ion-toolbar>
+    <ion-toolbar>
+        <ion-title>recycler-list-page</ion-title>
+    </ion-toolbar>
 </ion-header>
 
 <ion-content>
+    <ion-list>
+        <ion-item-sliding *ngFor="let station of stations; let i = index">
+            <ion-item>station {{i}}</ion-item>
+        </ion-item-sliding>
+    </ion-list>
 
+    <ion-infinite-scroll threshold="10px" (ionInfinite)="loadData($event)">
+        <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data...">
+        </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
 </ion-content>

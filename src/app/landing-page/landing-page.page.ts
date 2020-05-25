@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { HttpService } from '../http.service';
 
 @Component({
   selector: 'app-landing-page',
@@ -7,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LandingPagePage implements OnInit {
 
-  constructor() { }
+  constructor(
+    private router: Router,
+    private httpService: HttpService
+  ) { }
 
   ngOnInit() {
   }
 
+  loadStations(){
+    //go to the recycler list page
+    this.router.navigateByUrl("/recycler-list-page");
+  }
 }
