@@ -4,21 +4,19 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { LandingPagePageRoutingModule } from './landing-page-routing.module';
+import { AboutPageRoutingModule } from './about-routing.module';
 
-import { LandingPagePage } from './landing-page.page';
+import { AboutPage } from './about.page';
 import { SharedModule } from '../shared/shared.module';
-import { RouterModule } from '@angular/router';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    LandingPagePageRoutingModule,
-    SharedModule,
-    RouterModule
+    AboutPageRoutingModule,
+    SharedModule
   ],
-  declarations: [LandingPagePage]
+  declarations: [AboutPage]
 })
-export class LandingPagePageModule {}
+export class AboutPageModule {}

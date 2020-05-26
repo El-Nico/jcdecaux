@@ -7,13 +7,19 @@ import { IonicModule } from '@ionic/angular';
 import { MapViewPagePageRoutingModule } from './map-view-page-routing.module';
 
 import { MapViewPagePage } from './map-view-page.page';
+import { AgmCoreModule } from '@agm/core';
+import { SharedModule } from '../shared/shared.module';
+import { Router, RouterModule } from '@angular/router';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    MapViewPagePageRoutingModule
+    MapViewPagePageRoutingModule,
+    AgmCoreModule,
+    SharedModule,
+    RouterModule
   ],
   declarations: [MapViewPagePage]
 })

@@ -23,6 +23,10 @@ const routes: Routes = [
     path: 'map-view-page',
     loadChildren: () => import('./map-view-page/map-view-page.module').then( m => m.MapViewPagePageModule)
   },
+  {
+    path: 'about',
+    loadChildren: () => import('./about/about.module').then( m => m.AboutPageModule)
+  },
 ];
 
 @NgModule({

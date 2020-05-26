@@ -1,9 +1,17 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>map-view-page</ion-title>
-  </ion-toolbar>
+<ion-header translucent>
+
+    <ion-toolbar>
+        <ion-title>Map View</ion-title>
+    </ion-toolbar>
+    <ion-toolbar>
+        <ion-searchbar></ion-searchbar>
+    </ion-toolbar>
+
 </ion-header>
 
 <ion-content>
+    <agm-map [latitude]="latitude" [longitude]="longitude">
 
+    </agm-map>
 </ion-content>
+<app-tabs></app-tabs>

@@ -1,9 +1,19 @@
 <ion-header>
     <ion-toolbar>
-        <ion-title>landing-page</ion-title>
+        <ion-title>Station finder</ion-title>
     </ion-toolbar>
 </ion-header>
 
 <ion-content>
+    <ion-label>Select City</ion-label>
+    <ion-select interface="popover">
+        <ion-select-option value="nes">Dublin</ion-select-option>
+        <ion-select-option value="n64">lyon</ion-select-option>
+        <ion-select-option value="ps">someplace</ion-select-option>
+        <ion-select-option value="genesis">lagos</ion-select-option>
+        <ion-select-option value="saturn">chamnuzo</ion-select-option>
+        <ion-select-option value="snes">amaxonas</ion-select-option>
+    </ion-select>
     <ion-button (click)="loadStations()">load stations</ion-button>
 </ion-content>
+<app-tabs></app-tabs>

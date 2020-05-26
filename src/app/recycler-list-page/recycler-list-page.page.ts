@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from '../http.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-recycler-list-page',
@@ -9,7 +10,8 @@ import { HttpService } from '../http.service';
 export class RecyclerListPagePage implements OnInit {
 stations: any[]
   constructor(
-    private httpService: HttpService
+    private httpService: HttpService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -21,17 +23,7 @@ stations: any[]
     })
   }
 
-  loadData(event){
-    setTimeout(() => {
-      console.log('Done');
-      event.target.complete();
-
-      // App logic to determine if all data is loaded
-      // and disable the infinite scroll
-      // if (data.length == 1000) {
-      //   event.target.disabled = true;
-      // }
-    }, 1000);
+  onClickStation(){
+    this.router.navigateByUrl("/map-view-page")
   }
-
 }

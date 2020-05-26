@@ -7,13 +7,17 @@ import { IonicModule } from '@ionic/angular';
 import { RecyclerListPagePageRoutingModule } from './recycler-list-page-routing.module';
 
 import { RecyclerListPagePage } from './recycler-list-page.page';
+import { SharedModule } from '../shared/shared.module';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    RecyclerListPagePageRoutingModule
+    RecyclerListPagePageRoutingModule,
+    SharedModule,
+    RouterModule
   ],
   declarations: [RecyclerListPagePage]
 })

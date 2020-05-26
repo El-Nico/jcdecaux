@@ -7,13 +7,17 @@ import { IonicModule } from '@ionic/angular';
 import { PlaceDetailPagePageRoutingModule } from './place-detail-page-routing.module';
 
 import { PlaceDetailPagePage } from './place-detail-page.page';
+import { SharedModule } from '../shared/shared.module';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    PlaceDetailPagePageRoutingModule
+    PlaceDetailPagePageRoutingModule,
+    SharedModule,
+    RouterModule
   ],
   declarations: [PlaceDetailPagePage]
 })
