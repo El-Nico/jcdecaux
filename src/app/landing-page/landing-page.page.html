@@ -5,15 +5,15 @@
 </ion-header>
 
 <ion-content>
-    <ion-label>Select City</ion-label>
-    <ion-select interface="popover">
-        <ion-select-option value="nes">Dublin</ion-select-option>
-        <ion-select-option value="n64">lyon</ion-select-option>
-        <ion-select-option value="ps">someplace</ion-select-option>
-        <ion-select-option value="genesis">lagos</ion-select-option>
-        <ion-select-option value="saturn">chamnuzo</ion-select-option>
-        <ion-select-option value="snes">amaxonas</ion-select-option>
-    </ion-select>
-    <ion-button (click)="loadStations()">load stations</ion-button>
+    <div class="container">
+        <ion-item lines="none">
+            <ion-label>Select City</ion-label>
+            <ion-select value="dublin" interface="popover" (ionChange)="changedCity($event)">
+                <ion-select-option [value]="contract.name" *ngFor="let contract of contracts">{{contract.name}}</ion-select-option>
+            </ion-select>
+        </ion-item>
+        <ion-button (click)="loadStations()" expand="block" size="Large">load stations</ion-button>
+    </div>
+
 </ion-content>
 <app-tabs></app-tabs>

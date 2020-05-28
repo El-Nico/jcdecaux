@@ -1,0 +1,16 @@
+ion-content {}
+
+.about-text-wrap {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    // position: absolute;
+    // margin: auto;
+    // margin-top: 50%;
+}
+
+.about-text-wrap p {
+    text-align: center;
+}

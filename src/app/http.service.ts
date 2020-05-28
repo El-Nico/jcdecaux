@@ -21,4 +21,8 @@ _stations:any[];
     return this.httpClient.get<any[]>('https://api.jcdecaux.com/vls/v1/stations?contract=dublin&apiKey=58c3f7df449ee36b7a278dde2c381ba85f204d2b')
   }
 
+  getAllContracts(): Observable<any[]>{
+    return this.httpClient.get<any[]>('https://api.jcdecaux.com/vls/v1/contracts?apiKey=58c3f7df449ee36b7a278dde2c381ba85f204d2b');
+  }
+
 }

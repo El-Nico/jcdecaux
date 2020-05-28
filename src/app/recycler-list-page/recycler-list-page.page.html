@@ -8,7 +8,11 @@
     <ion-list>
         <ion-item-sliding *ngFor="let station of stations; let i = index">
             <ion-item>
-                station {{i}}
+                <div>
+                    <ion-title>Station Name</ion-title>
+                    <ion-text>Address</ion-text>
+                </div>
+                <ion-icon #fav (click)="toggleFavorite(i)" name="star-outline" slot="end"></ion-icon>
             </ion-item>
             <ion-item-options>
                 <ion-item-option (click)="onClickStation()" color="primary">
