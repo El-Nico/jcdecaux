@@ -1,6 +1,6 @@
 <ion-header>
     <ion-toolbar>
-        <ion-title>Dublin</ion-title>
+        <ion-title>{{cityName}} Stations</ion-title>
     </ion-toolbar>
 </ion-header>
 
@@ -9,8 +9,8 @@
         <ion-item-sliding *ngFor="let station of stations; let i = index">
             <ion-item>
                 <div>
-                    <ion-title>Station Name</ion-title>
-                    <ion-text>Address</ion-text>
+                    <ion-title>{{station.name}}</ion-title>
+                    <ion-text>{{station.address}}</ion-text>
                 </div>
                 <ion-icon #fav (click)="toggleFavorite(i)" name="star-outline" slot="end"></ion-icon>
             </ion-item>
@@ -19,7 +19,7 @@
                     <ion-icon slot="top" name="map-outline"></ion-icon>
                     Map
                 </ion-item-option>
-                <ion-item-option color="secondary" routerLink="/place-detail-page">
+                <ion-item-option color="secondary" (click)="showDetails(station)">
                     <ion-icon slot="top" ios="ellipsis-horizontal" md="ellipsis-vertical"></ion-icon>
                     Details
                 </ion-item-option>
@@ -27,4 +27,6 @@
         </ion-item-sliding>
     </ion-list>
 </ion-content>
-<app-tabs></app-tabs>
+<ion-toolbar>
+    <app-tabs></app-tabs>
+</ion-toolbar>

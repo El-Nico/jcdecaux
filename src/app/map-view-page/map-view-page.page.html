@@ -1,7 +1,7 @@
 <ion-header translucent>
 
     <ion-toolbar>
-        <ion-title>Map View</ion-title>
+        <ion-title>{{title}} Map</ion-title>
     </ion-toolbar>
     <ion-toolbar>
         <ion-searchbar placeholder="find station..."></ion-searchbar>
@@ -10,8 +10,10 @@
 </ion-header>
 
 <ion-content>
-    <agm-map [latitude]="latitude" [longitude]="longitude">
-
+    <agm-map [zoom]="16" [latitude]="latitude" [longitude]="longitude">
+        <agm-marker *ngFor="let station of stations" [latitude]="station.lat" [longitude]="station.lng"></agm-marker>
     </agm-map>
 </ion-content>
-<app-tabs></app-tabs>
+<ion-toolbar>
+    <app-tabs></app-tabs>
+</ion-toolbar>

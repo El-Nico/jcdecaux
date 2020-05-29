@@ -1,7 +1,9 @@
 import { Component, OnInit, Renderer2, ElementRef, ViewChild, ViewChildren, AfterViewInit, QueryList } from '@angular/core';
 import { HttpService } from '../http.service';
 import { Router } from '@angular/router';
-import { LoadingController } from '@ionic/angular';
+import { LoadingController, AlertController } from '@ionic/angular';
+import { DataSharingService } from '../data-sharing.service';
+import { switchMap } from 'rxjs/operators';
 
 
 @Component({
@@ -10,6 +12,7 @@ import { LoadingController } from '@ionic/angular';
   styleUrls: ['./recycler-list-page.page.scss'],
 })
 export class RecyclerListPagePage implements OnInit, AfterViewInit {
+  cityName="Not set"
   stations: any[]
   loading: HTMLIonLoadingElement
   listViewElements: any[]
@@ -20,25 +23,34 @@ export class RecyclerListPagePage implements OnInit, AfterViewInit {
     private router: Router,
     private loadingController: LoadingController,
     private renderer2: Renderer2,
-    private elementRef: ElementRef
+    private elementRef: ElementRef,
+    private dataSharingService: DataSharingService,
+    private alertController: AlertController
   ) { }
  
+  //monitor the list of star outline elements
   ngAfterViewInit(){
     this.favs.changes.subscribe(change=>{
         this.listViewElements=change.toArray();
     })
   }
 
+  //show the loading spinner until stations are loaded
   ngOnInit() {
     console.log(this.stations)
     if (!this.stations) {
       this.presentLoading().then(() => {
         //get Stations
         new Promise((resolve, reject) => {
-          this.httpService.getDublinStations()
+          
+          this.dataSharingService._selectedCityObs.pipe(
+            switchMap((selectedCity)=>{
+              this.cityName=selectedCity
+              return this.httpService.getStations(selectedCity);
+            })
+          )
             .subscribe(stations => {
               this.stations = stations
-              console.log(stations);
               resolve(stations);
             })
         }).then(() => {
@@ -50,10 +62,12 @@ export class RecyclerListPagePage implements OnInit, AfterViewInit {
 
   }
 
+  // when the map button is clicked go to map apage
   onClickStation() {
     this.router.navigateByUrl("/map-view-page")
   }
 
+  //loading spinner
   async presentLoading() {
     this.loading = await this.loadingController.create({
       // cssClass: 'my-custom-class',
@@ -71,8 +85,25 @@ export class RecyclerListPagePage implements OnInit, AfterViewInit {
     });
   }
 
+  //favorites
   toggleFavorite(index) {
-    this.renderer2.setAttribute(
+
+    //if already favorite?
+    if (this.listViewElements[index].el.style.color=="yellow"){
+      this.renderer2.setAttribute(
+        this.listViewElements[index].el,
+        'name',
+        'star-outline'
+      )
+      this.renderer2.setStyle(
+        this.listViewElements[index].el,
+        'color',
+        ''
+      )
+      this.presentAlert(`removed ${this.stations[index].name} from favorites`);
+    }
+    else{
+      this.renderer2.setAttribute(
       this.listViewElements[index].el,
       'name',
       'star'
@@ -82,6 +113,26 @@ export class RecyclerListPagePage implements OnInit, AfterViewInit {
       'color',
       'yellow'
     )
-    console.log("toggling fav")
+    this.presentAlert(`added ${this.stations[index].name} to favorites`);
+    }
+  }
+
+  //alert when favorite is selected deselected
+  async presentAlert(message:string) {
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: `Favorites`,
+      subHeader: '',
+      message: `${message}`,
+      buttons: ['OK']
+    });
+
+    await alert.present();
+  }
+
+  //navigate to place detail page show detail of sclicked station
+  showDetails(station){
+    this.dataSharingService.currentDetails=station;
+    this.router.navigateByUrl("/place-detail-page")
   }
 }

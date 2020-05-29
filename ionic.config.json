@@ -1,5 +1,7 @@
 {
   "name": "bike-stations-jcdecaux",
-  "integrations": {},
+  "integrations": {
+    "capacitor": {}
+  },
   "type": "angular"
 }
